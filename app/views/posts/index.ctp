@@ -1,3 +1,11 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<?php echo $html->charset("utf-8");?>
+<title>DoneList</title>
+</head>
+<body>
+
 <h1>Blog posts</h1>
 
 <table>
@@ -16,5 +24,12 @@
 		<td><?php echo $post['Post']['created']; ?></td>
 	</tr>
 	<?php endforeach; ?>
-
 </table>
+<div>追加するtitle<?php echo $form->create(null,array('type'=> 'post','action'=> './add')); ?>
+<?php echo $form->text("Post.title");?>
+<?php echo $form->submit("送信");?>
+<?php echo $form->end();?>
+</div>
+
+</body>
+</html>

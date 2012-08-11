@@ -14,6 +14,7 @@ class PostsController extends AppController
 		'recursive' => 0
 	);
 	
+	
 	function index() {
 		$data = $this->paginate();
 		$this->set('data',$data);//$this->set('posts',$this->Post->find('all',array('order' => "id")));

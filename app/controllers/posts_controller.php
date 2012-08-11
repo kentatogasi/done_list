@@ -3,9 +3,20 @@
 class PostsController extends AppController
 {
 	var $name = 'Posts';
-	public $autoLayout = false;
+	var $autoLayout = false;
+	var $paginate = array(
+		'page' => 1,
+		'conditions' => array(),
+		'fields' => array('id','title','created'),
+		'sort' => 'id',
+		'limit' => 5,
+		'direction' => 'asc',
+		'recursive' => 0
+	);
+	
 	function index() {
-		$this->set('posts',$this->Post->find('all',array('order' => "id")));
+		$data = $this->paginate();
+		$this->set('data',$data);//$this->set('posts',$this->Post->find('all',array('order' => "id")));
 	}
 	
 	function view($id = null){
@@ -20,6 +31,9 @@ class PostsController extends AppController
 		$this->redirect('.');
 	}
 	function delete(){
-		
+		if(!empty($this->data)){
+			$this->Post->delete($this->data['Post']['id']);
+		}
+		$this->redirect('.');
 	}
 }
